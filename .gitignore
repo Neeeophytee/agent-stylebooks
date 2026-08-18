@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+*.zip
+.DS_Store
+validation-report.json

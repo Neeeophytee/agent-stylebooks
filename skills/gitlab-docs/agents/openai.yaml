@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitLab Docs Style"
+  short_description: "Concise searchable product documentation"
+  default_prompt: "Use $gitlab-docs to make this product documentation concise, precise, and task focused."

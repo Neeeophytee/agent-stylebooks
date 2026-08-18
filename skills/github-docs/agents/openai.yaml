@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Docs Style"
+  short_description: "Approachable developer product guidance"
+  default_prompt: "Use $github-docs to turn this workflow into an approachable, verifiable developer guide."

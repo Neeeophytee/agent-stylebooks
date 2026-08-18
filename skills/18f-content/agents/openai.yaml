@@ -1,0 +1,4 @@
+interface:
+  display_name: "18F Content Style"
+  short_description: "Inclusive US digital-service content"
+  default_prompt: "Use $18f-content to reduce burden and clarify the next action in this government service."

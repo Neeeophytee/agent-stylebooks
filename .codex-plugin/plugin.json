@@ -1,0 +1,34 @@
+{
+  "name": "agent-stylebooks",
+  "version": "0.1.0",
+  "description": "Eleven source-grounded house-style skills for technical documentation, public-service content, product help, and interface writing.",
+  "author": {
+    "name": "Shilpa Mitra"
+  },
+  "homepage": "https://github.com/Neeeophytee/agent-stylebooks",
+  "repository": "https://github.com/Neeeophytee/agent-stylebooks",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "writing",
+    "documentation",
+    "content-design",
+    "style-guides"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Stylebooks",
+    "shortDescription": "Apply established editorial systems to writing.",
+    "longDescription": "Choose one of 11 independently installable Agent Skills to draft or edit documentation, service content, product copy, and interface text using a source-grounded editorial system.",
+    "developerName": "Shilpa Mitra",
+    "category": "Productivity",
+    "capabilities": [
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Rewrite this guide with the right house style.",
+      "Choose a house style for this documentation.",
+      "Audit this draft against a named style."
+    ]
+  }
+}

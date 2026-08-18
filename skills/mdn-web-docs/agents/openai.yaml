@@ -1,0 +1,4 @@
+interface:
+  display_name: "MDN Web Docs Style"
+  short_description: "Clear web-platform reference and learning"
+  default_prompt: "Use $mdn-web-docs to explain this web API with accurate context and a focused example."

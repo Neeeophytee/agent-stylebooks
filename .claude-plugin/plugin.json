@@ -1,0 +1,31 @@
+{
+  "name": "agent-stylebooks",
+  "version": "0.1.0",
+  "description": "Eleven source-grounded house-style skills for documentation, service content, product help, and interface writing.",
+  "author": {
+    "name": "Shilpa Mitra"
+  },
+  "homepage": "https://github.com/Neeeophytee/agent-stylebooks",
+  "repository": "https://github.com/Neeeophytee/agent-stylebooks",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "writing",
+    "documentation",
+    "content-design",
+    "style-guides"
+  ],
+  "skills": [
+    "./skills/18f-content",
+    "./skills/apple-interface-writing",
+    "./skills/github-docs",
+    "./skills/gitlab-docs",
+    "./skills/google-developer-docs",
+    "./skills/govuk",
+    "./skills/kubernetes-docs",
+    "./skills/mailchimp-content",
+    "./skills/mdn-web-docs",
+    "./skills/microsoft-writing-style",
+    "./skills/red-hat-docs"
+  ]
+}

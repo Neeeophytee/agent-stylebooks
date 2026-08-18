@@ -1,0 +1,20 @@
+{
+  "name": "agent-stylebooks",
+  "interface": {
+    "displayName": "Agent Stylebooks"
+  },
+  "plugins": [
+    {
+      "name": "agent-stylebooks",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/Neeeophytee/agent-stylebooks.git"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

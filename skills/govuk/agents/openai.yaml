@@ -1,0 +1,4 @@
+interface:
+  display_name: "GOV.UK Content Style"
+  short_description: "Plain public-service content design"
+  default_prompt: "Use $govuk to rewrite this service page around the user's decision and next action."

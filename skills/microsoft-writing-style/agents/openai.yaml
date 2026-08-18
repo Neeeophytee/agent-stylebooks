@@ -1,0 +1,4 @@
+interface:
+  display_name: "Microsoft Writing Style"
+  short_description: "Friendly concise product and help content"
+  default_prompt: "Use $microsoft-writing-style to make this product help clear, calm, and action oriented."

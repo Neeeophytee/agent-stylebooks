@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kubernetes Docs Style"
+  short_description: "Version-aware cloud-native documentation"
+  default_prompt: "Use $kubernetes-docs to rewrite this cluster procedure with explicit scope and verification."

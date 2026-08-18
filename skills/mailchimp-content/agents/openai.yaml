@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mailchimp Content Style"
+  short_description: "Plainspoken empathetic customer content"
+  default_prompt: "Use $mailchimp-content to make this customer message clear, familiar, and situation aware."

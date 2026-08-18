@@ -1,0 +1,23 @@
+name: Validate repository
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate skills, manifests, and provenance
+        run: python scripts/validate_repo.py
+      - name: Check Python syntax
+        run: python -m compileall -q scripts

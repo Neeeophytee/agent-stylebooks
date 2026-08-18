@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple Interface Writing"
+  short_description: "Concise action-led interface language"
+  default_prompt: "Use $apple-interface-writing to tighten these labels, alerts, and recovery messages."

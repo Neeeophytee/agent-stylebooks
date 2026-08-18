@@ -1,0 +1,4 @@
+interface:
+  display_name: "Red Hat Docs Style"
+  short_description: "Modular enterprise technical documentation"
+  default_prompt: "Use $red-hat-docs to make this procedure modular, explicit, and verifiable."

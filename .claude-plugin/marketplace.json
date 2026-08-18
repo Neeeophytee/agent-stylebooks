@@ -1,0 +1,20 @@
+{
+  "name": "agent-stylebooks",
+  "owner": {
+    "name": "Shilpa Mitra"
+  },
+  "plugins": [
+    {
+      "name": "agent-stylebooks",
+      "source": "./",
+      "description": "Eleven portable editorial-system skills for agents.",
+      "category": "writing",
+      "keywords": [
+        "writing",
+        "documentation",
+        "content-design",
+        "agent-skills"
+      ]
+    }
+  ]
+}

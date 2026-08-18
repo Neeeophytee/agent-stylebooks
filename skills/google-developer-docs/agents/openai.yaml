@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Developer Docs Style"
+  short_description: "Clear global developer documentation"
+  default_prompt: "Use $google-developer-docs to rewrite this technical guide for a global developer audience."
