@@ -39,6 +39,8 @@ and apply the skill to structure and prose.
 
 List the catalog or install one skill with the portable installer:
 
+The portable installer currently requires Node.js 22.20 or newer.
+
 ```sh
 npx skills add Neeeophytee/agent-stylebooks --list
 npx skills add Neeeophytee/agent-stylebooks --skill govuk

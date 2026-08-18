@@ -7,6 +7,8 @@ Each directory in `skills/` is a complete, independent skill. Preserve its
 
 List the catalog, install one skill, or install the complete catalog:
 
+The portable installer currently requires Node.js 22.20 or newer.
+
 ```sh
 npx skills add Neeeophytee/agent-stylebooks --list
 npx skills add Neeeophytee/agent-stylebooks --skill govuk
