@@ -79,6 +79,46 @@ Use $18f-content to audit this application flow. Preserve eligibility policy,
 identify avoidable burden, and make submission status and alternative routes clear.
 ```
 
+## Write a public-health warning
+
+```text
+Use $cdc-clear-communication to turn these verified heat-stroke notes into a public
+warning for outdoor workers. Lead with one primary message and the immediate action.
+Keep the supplied temperature, timing, risk, and emergency thresholds exact.
+```
+
+## Rewrite patient information
+
+```text
+Use $nhs-health-content to rewrite this appointment preparation page for patients
+with mixed health literacy. Separate emergency, urgent, and routine advice; explain
+clinical terms; and preserve every preparation step, caveat, and contact route.
+```
+
+## Clarify investor risk
+
+```text
+Use $sec-plain-english to rewrite this verified risk-factor section for investors.
+Preserve every material fact, condition, uncertainty, and forward-looking qualification.
+Return a fact-to-rewrite mapping for securities counsel. Do not give legal advice.
+```
+
+## Structure a specification
+
+```text
+Use $w3c-technical-reports to turn these approved protocol requirements into a
+structured technical specification. Separate normative requirements from examples
+and rationale. Do not invent requirements or change the approved requirement strength.
+```
+
+## Report engineering test results
+
+```text
+Use $nasa-technical-writing to turn these test notes and measurements into a report
+section. Preserve units, precision, configuration, and test conditions. Separate
+observations from interpretation and trace each conclusion to supplied evidence.
+```
+
 ## Preserve constraints
 
 Add these instructions to any invocation when relevant:

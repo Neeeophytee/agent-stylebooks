@@ -1,0 +1,4 @@
+interface:
+  display_name: "CDC Clear Communication"
+  short_description: "Action-led public-health communication"
+  default_prompt: "Use $cdc-clear-communication to make this verified health message clear, actionable, and evidence faithful."

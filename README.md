@@ -2,64 +2,128 @@
 
 > Pick the writing system before the model picks one for you.
 
-Eleven installable writing systems for AI agents, based on the public editorial
-guidance behind Google developer docs, GOV.UK, GitLab, GitHub, Kubernetes, MDN,
-Red Hat, 18F, Microsoft, Mailchimp, and Apple.
+![Agent Stylebooks overview](assets/readme/agent-stylebooks-overview.png)
 
-Pick the system that fits the work. Each skill tells an agent what to lead with,
-how to order information, which sentence-level choices to make, what to avoid, and
-how to check the result. The goal is a defined editorial target—not a generic
-“make this sound human” rewrite.
+Stop asking AI to “write better.” Give it an editorial system.
 
-> These are community interpretations, not official vendor skills. Source names
-> identify the public guides that informed each skill. No organization listed here
-> endorses this repository.
+Portable [Agent Skills](https://agentskills.io/) based on established editorial systems.
 
-## The 11 skills
+[![16 stylebooks](https://img.shields.io/badge/stylebooks-16-315c8a)](CATALOG.md)
+[![Agent Skills](https://img.shields.io/badge/format-Agent_Skills-6f42c1)](https://agentskills.io/)
+[![MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Validate repository](https://github.com/Neeeophytee/agent-stylebooks/actions/workflows/validate.yml/badge.svg)](https://github.com/Neeeophytee/agent-stylebooks/actions/workflows/validate.yml)
 
-| Skill | Best fit |
-| --- | --- |
-| `google-developer-docs` | Developer guides, tutorials, concepts, and API documentation |
-| `govuk` | Public-service, policy, eligibility, and transactional content |
-| `gitlab-docs` | Searchable product and engineering documentation |
-| `github-docs` | Developer workflows, product help, and troubleshooting |
-| `kubernetes-docs` | Versioned cloud-native concepts, tasks, and references |
-| `mdn-web-docs` | Web-platform reference and learning content |
-| `red-hat-docs` | Modular enterprise product documentation |
-| `18f-content` | US digital-government services and forms |
-| `microsoft-writing-style` | Product help, UX content, and support messages |
-| `mailchimp-content` | Friendly customer education and product communication |
-| `apple-interface-writing` | Labels, settings, alerts, onboarding, and UI flows |
-
-Use one house style at a time unless the user explicitly asks for a hybrid. When
-a product terminology guide conflicts with a house skill, keep the product terms
-and apply the skill to structure and prose.
-
-## Install
-
-List the catalog or install one skill with the portable installer:
-
-The portable installer currently requires Node.js 22.20 or newer.
-
-```sh
-npx skills add Neeeophytee/agent-stylebooks --list
-npx skills add Neeeophytee/agent-stylebooks --skill govuk
-```
-
-To install the complete catalog, omit `--skill`:
+<a href="https://webafterai.substack.com/"><img src="assets/readme/subscribe-web-after-ai.png" alt="Subscribe to Web After AI" width="172"></a>
 
 ```sh
 npx skills add Neeeophytee/agent-stylebooks
 ```
 
-Claude Code and Codex can also install the repository as a plugin through their
-marketplace manifests. Manual, project-level, and agent-specific instructions are
-in [INSTALL.md](INSTALL.md).
+[Browse stylebooks](CATALOG.md) · [Installation](INSTALL.md) · [Examples](EXAMPLES.md) · [Provenance](PROVENANCE.md)
+
+Each stylebook defines what to lead with, how to order information, which distinctions
+must survive editing, what ambiguity is unacceptable, and how to check the result. These
+are community-maintained Agent Skills derived from publicly documented editorial guidance,
+not official vendor or agency products.
+
+## Which stylebook should I use?
+
+Choose by the reader's task and the artifact—not by the organization named in the draft.
+
+| Recommended stylebook | I am writing... |
+| --- | --- |
+| `$google-developer-docs` | API or setup tutorial, how-to guide, onboarding instructions |
+| `$govuk` | Public-service eligibility page, decision guide, application instructions |
+| `$gitlab-docs` | Engineering or product docs, internal documentation, feature guide |
+| `$github-docs` | Product workflow, step-by-step guide, troubleshooting article |
+| `$mdn-web-docs` | Web API explanation, technical reference, learning article |
+| `$kubernetes-docs` | Infrastructure procedure, operations runbook, deployment guide |
+| `$nhs-health-content` | Health or patient content, explainer, care instructions |
+| `$cdc-clear-communication` | Public-health message, safety advisory, awareness campaign |
+| `$sec-plain-english` | Investor disclosure, business report, risk explanation |
+| `$w3c-technical-reports` | Technical specification, standards document, requirements definition |
+| `$nasa-technical-writing` | Engineering or test report, research report, findings summary |
+| `$microsoft-writing-style` | Product help or UX copy, support article, interface guidance |
+| `$apple-interface-writing` | Interface labels or alerts, microcopy, onboarding flow |
+
+[Compare all 16 stylebooks →](CATALOG.md)
+
+## Prompt vs stylebook
+
+| Generic prompt | Stylebook |
+| --- | --- |
+| Ad hoc | Reusable |
+| “Make it clear” | Concrete editorial decisions |
+| Source usually unknown | Provenance documented |
+| Rewritten each session | Installed once |
+| Easy to drift | Repeatable workflow |
+| “Sound human” | Optimize for a specific reader and task |
+
+## See the difference
+
+These original examples illustrate the systems; they are not quotations or claimed outputs
+from the source organizations.
+
+**Generic technical prose**
+
+> To successfully initiate configuration, authentication credentials must first be
+> appropriately established.
+
+**`$google-developer-docs`**
+
+> Before you configure the integration, set up your authentication credentials.
+
+**Generic error**
+
+> An error occurred while processing your request. Please try again later.
+
+**`$microsoft-writing-style`**
+
+> We couldn't save your changes. Check your connection and try again.
+
+**Generic risk statement**
+
+> Unfavorable market conditions may adversely affect our results.
+
+**`$sec-plain-english`**
+
+> If borrowing costs rise, our interest expense may increase and reduce our net income.
+
+## Install
+
+The portable installer currently requires Node.js 22.20 or newer.
+
+```sh
+# List the catalog
+npx skills add Neeeophytee/agent-stylebooks --list
+
+# Install one stylebook
+npx skills add Neeeophytee/agent-stylebooks --skill cdc-clear-communication
+
+# Install all 16
+npx skills add Neeeophytee/agent-stylebooks
+```
+
+Claude Code and Codex can also install the repository as a plugin. Manual, project-level,
+and agent-specific routes are in [INSTALL.md](INSTALL.md).
+
+## Use
+
+```text
+Use $google-developer-docs to turn these notes into a setup guide.
+Use $govuk to rewrite this eligibility page around the user's decision.
+Use $apple-interface-writing to tighten these labels and error messages.
+```
+
+Use one primary stylebook unless the task explicitly needs a hybrid. A product terminology
+guide still governs product names; the stylebook governs structure and prose. Every skill
+must preserve supplied facts, code behavior, legal meaning, and domain constraints.
 
 ## Compatibility
 
-Every skill uses the open `SKILL.md` format and lives directly under `skills/` so
-installers and native skill loaders do not need category-specific path handling.
+Every stylebook uses the open `SKILL.md` format and remains an immediate child of `skills/`.
+That flat layout supports Codex, Claude Code, Kimi Code CLI, Cursor, Hermes Agent, GitHub
+Copilot, Gemini CLI, and other compatible loaders.
 
 | Agent | Supported route |
 | --- | --- |
@@ -72,54 +136,28 @@ installers and native skill loaders do not need category-specific path handling.
 | Gemini CLI | `.gemini/skills/` or portable installer |
 | Other compatible agents | Any loader that implements the Agent Skills specification |
 
-Compatibility means the repository follows each documented discovery shape. It
-does not imply that the source organizations created or tested these skills. See
-[COMPATIBILITY.md](COMPATIBILITY.md) for test evidence and [INSTALL.md](INSTALL.md)
-for the exact routes.
+Compatibility means the repository follows each documented discovery shape. It does not
+imply that the source organizations created or tested these stylebooks. See
+[COMPATIBILITY.md](COMPATIBILITY.md) for test evidence and [INSTALL.md](INSTALL.md) for the
+exact routes.
 
-## Use
+## Provenance and limits
 
-```text
-Use $google-developer-docs to turn these notes into a setup guide.
-Use $govuk to rewrite this eligibility page around the user's decision.
-Use $apple-interface-writing to tighten these labels and error messages.
-```
+[PROVENANCE.md](PROVENANCE.md) records the authoritative source and reuse decision for every
+stylebook. Openly licensed and public-domain sources still use independently written rules.
+Restricted or unclear sources are reference-only interpretations.
 
-Each skill can draft new content, edit an existing artifact, or audit a draft. It
-must preserve facts, code behavior, legal meaning, and product terminology. It
-changes presentation, not substance.
+The repository's original text and scripts are MIT licensed. Third-party guides retain their
+own terms. No source organization endorses this project. A stylebook does not provide legal,
+medical, regulatory, standards, or publication approval. See [NOTICE.md](NOTICE.md).
 
-## Why skills rather than prompts
-
-- The trigger description tells an agent when the style fits.
-- The body defines a repeatable workflow and concrete editorial decisions.
-- Provenance stays beside the skill but loads only for licensing or source work.
-- CI checks structure, naming, manifests, provenance, and catalog consistency.
-
-## Provenance and licensing
-
-The source audit is in [PROVENANCE.md](PROVENANCE.md). Eight skills use guides
-with public-domain or Creative Commons-style reuse terms. Three are conservative,
-reference-only interpretations because their source terms are restricted or do
-not clearly support an MIT adaptation.
-
-The repository's original text and scripts are MIT licensed. Third-party source
-guides retain their own terms. See [NOTICE.md](NOTICE.md). This classification is
-a careful publication policy, not legal advice.
-
-## Validate
+## Validate and contribute
 
 ```sh
 python3 scripts/validate_repo.py
 ```
 
-The validator requires only Python's standard library. CI runs the same command.
-
-## Contribute
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a style. A new skill needs
-an authoritative source, a licensing decision, independently written instructions,
-operational rules, original examples, and validation coverage.
-
-Version 0.1 does not claim multi-model behavioral certification. Compatibility
-evidence separates structural discovery from subjective output quality.
+CI checks structure, names, frontmatter, manifests, provenance, links, duplicate inventory,
+and the byte integrity of the original 11 skills. Read [CONTRIBUTING.md](CONTRIBUTING.md)
+before proposing another editorial system or use the
+[stylebook request form](.github/ISSUE_TEMPLATE/request-stylebook.yml).

@@ -2,6 +2,10 @@
 
 Verification date: **2026-08-18**.
 
+Catalog structure revalidated for v0.2 on **2026-08-19**. The live receipts below are
+historical v0.1 evidence for the original 11 skills; the five additions have repository-format
+and manifest checks but do not claim new live client receipts.
+
 This repository uses the open Agent Skills directory format. Each installable
 unit is a direct child of `skills/` and contains `SKILL.md`; optional Codex UI
 metadata and provenance sit below the same directory.
@@ -19,15 +23,20 @@ metadata and provenance sit below the same directory.
 | Gemini CLI | `.gemini/skills/<name>/SKILL.md` | One-directory-deep discovery requirement satisfied; no execution receipt recorded |
 | Other Agent Skills clients | `skills/<name>/SKILL.md` | Core name, description, directory, and reference rules checked by the repository validator |
 
+The v0.2 validator confirms that all 16 directories use the same one-level discovery shape,
+that the Claude manifest lists all 16 paths, and that the Codex manifest exposes the shared
+`skills/` root. Live discovery should be repeated across supported clients before claiming a
+new 16-skill execution receipt.
+
 The Codex and Hermes tests used isolated temporary copies and made no persistent
 configuration changes.
 
 ## What these checks prove
 
-- All 11 skills are parseable and discoverable in the two agents with live
-  execution receipts.
+- The original 11 skills were parseable and discoverable in the two agents with live
+  execution receipts; all 16 are now format-validated.
 - Every skill has a unique trigger description and a complete instruction file.
-- Claude and Codex manifests point to the same 11 direct skill directories.
+- Claude and Codex manifests point to the same 16 direct skill directories.
 - The remaining clients receive the directory depth and portable frontmatter shape
   documented by their current skill loaders.
 
@@ -35,7 +44,7 @@ configuration changes.
 
 Discovery is not behavioral certification. Model choice, surrounding instructions,
 source material, and prompt quality can change output. The skills received a manual
-instruction-level synthesis audit, but v0.1 does not include multi-model A/B evals
+instruction-level synthesis audit, but v0.2 does not include multi-model A/B evals
 or claim identical behavior across agents.
 
 When adding a compatibility claim, test the current client version and record the

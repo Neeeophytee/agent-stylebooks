@@ -1,0 +1,4 @@
+interface:
+  display_name: "NHS Health Content"
+  short_description: "Patient-first clinically careful content"
+  default_prompt: "Use $nhs-health-content to make this verified patient information clear, inclusive, and clinically careful."

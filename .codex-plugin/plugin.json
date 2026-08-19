@@ -1,7 +1,7 @@
 {
   "name": "agent-stylebooks",
-  "version": "0.1.0",
-  "description": "Eleven source-grounded house-style skills for technical documentation, public-service content, product help, and interface writing.",
+  "version": "0.2.0",
+  "description": "Sixteen source-grounded editorial systems for technical, public-service, health, product, standards, financial, and engineering writing.",
   "author": {
     "name": "Shilpa Mitra"
   },
@@ -19,16 +19,16 @@
   "interface": {
     "displayName": "Agent Stylebooks",
     "shortDescription": "Apply established editorial systems to writing.",
-    "longDescription": "Choose one of 11 independently installable Agent Skills to draft or edit documentation, service content, product copy, and interface text using a source-grounded editorial system.",
+    "longDescription": "Choose one of 16 independently installable Agent Skills to draft or edit technical, service, health, product, standards, financial, and engineering content using a source-grounded editorial system.",
     "developerName": "Shilpa Mitra",
     "category": "Productivity",
     "capabilities": [
       "Write"
     ],
-    "defaultPrompt": [
-      "Rewrite this guide with the right house style.",
-      "Choose a house style for this documentation.",
-      "Audit this draft against a named style."
-    ]
+      "defaultPrompt": [
+        "Rewrite this content with the selected editorial system.",
+        "Choose an editorial system for this writing task.",
+        "Audit this draft against a named stylebook."
+      ]
   }
 }

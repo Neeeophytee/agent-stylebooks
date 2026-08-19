@@ -7,7 +7,7 @@
     {
       "name": "agent-stylebooks",
       "source": "./",
-      "description": "Eleven portable editorial-system skills for agents.",
+        "description": "Sixteen portable editorial-system skills for agents.",
       "category": "writing",
       "keywords": [
         "writing",

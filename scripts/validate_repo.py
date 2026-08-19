@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -17,6 +18,7 @@ AUTHOR_NAME = "Shilpa Mitra"
 EXPECTED_SKILLS = (
     "18f-content",
     "apple-interface-writing",
+    "cdc-clear-communication",
     "github-docs",
     "gitlab-docs",
     "google-developer-docs",
@@ -25,8 +27,32 @@ EXPECTED_SKILLS = (
     "mailchimp-content",
     "mdn-web-docs",
     "microsoft-writing-style",
+    "nasa-technical-writing",
+    "nhs-health-content",
     "red-hat-docs",
+    "sec-plain-english",
+    "w3c-technical-reports",
 )
+NEW_SKILLS = {
+    "cdc-clear-communication",
+    "nasa-technical-writing",
+    "nhs-health-content",
+    "sec-plain-english",
+    "w3c-technical-reports",
+}
+LEGACY_SKILL_SHA256 = {
+    "18f-content": "11a87a81e0d0f97198b91bc2429f0a189ed1aef5f4d07340bcd9671728c0a90a",
+    "apple-interface-writing": "90921d01e97d929ac7ccec587516edc3f9001ba87bec7d583bd31b0d7bb2a3dd",
+    "github-docs": "28b2e1693377e51ec8a55f312c38919e11aeb8a0ea685321882479a0318722a6",
+    "gitlab-docs": "e7f3ca605146aaf27ce640175e13b417f55af8be28c116ada376c3ca6df73348",
+    "google-developer-docs": "0e3a06b5acac12a0cdd7348d529eb8092348e8925d187b40ce9e31f73532effa",
+    "govuk": "de9e043f491f7a74ebb75cd3646bc9ff9150d5190995076090175778c37d07df",
+    "kubernetes-docs": "19ea4dc60649e1911bc991ff7047177e45ba94938b0244fd2e9ac24f6fa4d377",
+    "mailchimp-content": "e6007f80451c9bab9a9955a9e0a5210ef8ade30cf176c396af803daac3039aff",
+    "mdn-web-docs": "48ca71db44c5a74abfb57db4f3d5be34ef17ae9e03a8a7988e453f3a482fab03",
+    "microsoft-writing-style": "161c4c959101298c72453a3044fe6e2498a171ed16fbb32a005966c0c80c32bb",
+    "red-hat-docs": "611f25d7acb00f702eacb0515c91f1cdb8baf3bd29ec89d903e6917b5bbb2672",
+}
 REQUIRED_ROOT_FILES = (
     ".agents/plugins/marketplace.json",
     ".claude-plugin/marketplace.json",
@@ -34,6 +60,8 @@ REQUIRED_ROOT_FILES = (
     ".codex-plugin/plugin.json",
     ".github/workflows/validate.yml",
     "AGENTS.md",
+    "CATALOG.md",
+    "CHANGELOG.md",
     "CLAUDE.md",
     "COMPATIBILITY.md",
     "CONTRIBUTING.md",
@@ -44,6 +72,11 @@ REQUIRED_ROOT_FILES = (
     "PROVENANCE.md",
     "README.md",
     "STYLE-MATRIX.md",
+    "docs/ASD-STE100-PLAN.md",
+    "docs/RELEASE-v0.2.0.md",
+    ".github/ISSUE_TEMPLATE/config.yml",
+    ".github/ISSUE_TEMPLATE/report-stylebook-problem.yml",
+    ".github/ISSUE_TEMPLATE/request-stylebook.yml",
 )
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
@@ -88,12 +121,15 @@ def validate_skill(name: str, errors: list[str]) -> None:
     skill_file = skill_dir / "SKILL.md"
     agent_file = skill_dir / "agents" / "openai.yaml"
     provenance_file = skill_dir / "references" / "provenance.md"
+    source_file = skill_dir / "references" / "SOURCE.md"
 
     for path in (skill_file, agent_file, provenance_file):
         if not path.is_file():
             fail(errors, f"missing required skill file: {path.relative_to(ROOT)}")
     if not skill_file.is_file():
         return
+    if name in NEW_SKILLS and not source_file.is_file():
+        fail(errors, f"missing required skill file: {source_file.relative_to(ROOT)}")
 
     metadata, body = parse_frontmatter(skill_file, errors)
     if set(metadata) != {"name", "description"}:
@@ -111,8 +147,17 @@ def validate_skill(name: str, errors: list[str]) -> None:
         fail(errors, f"{skill_file.relative_to(ROOT)}: empty instruction body")
     if len(skill_file.read_text(encoding="utf-8").splitlines()) > 500:
         fail(errors, f"{skill_file.relative_to(ROOT)}: exceeds 500 lines")
-    if "references/provenance.md" not in body:
-        fail(errors, f"{skill_file.relative_to(ROOT)}: does not link its provenance reference")
+    reference_link = "references/SOURCE.md" if name in NEW_SKILLS else "references/provenance.md"
+    if reference_link not in body:
+        fail(errors, f"{skill_file.relative_to(ROOT)}: does not link {reference_link}")
+    if skill_file.stat().st_size > 50_000:
+        fail(errors, f"{skill_file.relative_to(ROOT)}: exceeds 50 KB instruction budget")
+
+    legacy_hash = LEGACY_SKILL_SHA256.get(name)
+    if legacy_hash:
+        actual_hash = hashlib.sha256(skill_file.read_bytes()).hexdigest()
+        if actual_hash != legacy_hash:
+            fail(errors, f"{skill_file.relative_to(ROOT)}: original skill content changed")
 
     if agent_file.is_file():
         agent_text = agent_file.read_text(encoding="utf-8")
@@ -137,16 +182,33 @@ def validate_skill(name: str, errors: list[str]) -> None:
 
     if provenance_file.is_file():
         provenance = provenance_file.read_text(encoding="utf-8")
+        accessed_marker = "Accessed: 2026-08-19" if name in NEW_SKILLS else "Accessed: 2026-08-18"
         for marker in (
             "Primary source:",
             "Classification:",
-            "Accessed: 2026-08-18",
+            accessed_marker,
             "Method:",
             "Affiliation:",
             "https://",
         ):
             if marker not in provenance:
                 fail(errors, f"{provenance_file.relative_to(ROOT)}: missing {marker}")
+
+    if name in NEW_SKILLS and source_file.is_file():
+        source = source_file.read_text(encoding="utf-8")
+        for marker in (
+            "Primary source:",
+            "Publisher:",
+            "Accessed: 2026-08-19",
+            "Classification:",
+            "Operationalized:",
+            "Not copied:",
+            "Method:",
+            "Affiliation:",
+            "https://",
+        ):
+            if marker not in source:
+                fail(errors, f"{source_file.relative_to(ROOT)}: missing {marker}")
 
 
 def validate_manifests(errors: list[str]) -> None:
@@ -200,7 +262,7 @@ def validate_manifests(errors: list[str]) -> None:
 
     expected_paths = [f"./skills/{name}" for name in EXPECTED_SKILLS]
     if isinstance(claude, dict) and sorted(claude.get("skills", [])) != expected_paths:
-        fail(errors, "Claude manifest: skill path inventory does not match the 11 expected skills")
+        fail(errors, f"Claude manifest: skill path inventory does not match the {len(EXPECTED_SKILLS)} expected skills")
 
     relative = ".claude-plugin/marketplace.json"
     data = load_json(ROOT / relative, errors)
@@ -260,7 +322,7 @@ def validate_catalog(errors: list[str]) -> None:
     if actual != EXPECTED_SKILLS:
         fail(errors, f"skill inventory mismatch: expected {EXPECTED_SKILLS}, found {actual}")
 
-    catalog_files = ("README.md", "PROVENANCE.md", "STYLE-MATRIX.md")
+    catalog_files = ("CATALOG.md", "PROVENANCE.md", "STYLE-MATRIX.md")
     for relative in catalog_files:
         text = (ROOT / relative).read_text(encoding="utf-8")
         for name in EXPECTED_SKILLS:
@@ -268,10 +330,40 @@ def validate_catalog(errors: list[str]) -> None:
                 fail(errors, f"{relative}: missing catalog entry {name}")
 
     provenance = (ROOT / "PROVENANCE.md").read_text(encoding="utf-8")
-    if provenance.count("| A |") != 8 or provenance.count("| B |") != 3:
-        fail(errors, "PROVENANCE.md: expected eight A and three B classifications")
-    if "| C |" in provenance:
+    catalog_rows = [line for line in provenance.splitlines() if line.startswith("| `")]
+    class_a = sum("| A —" in line for line in catalog_rows)
+    class_b = sum("| B —" in line for line in catalog_rows)
+    if class_a != 10 or class_b != 6 or len(catalog_rows) != len(EXPECTED_SKILLS):
+        fail(errors, "PROVENANCE.md: expected ten A and six B catalog classifications")
+    if any("| C —" in line for line in catalog_rows):
         fail(errors, "PROVENANCE.md: unresolved class C entry present")
+
+
+def validate_issue_forms(errors: list[str]) -> None:
+    expected = {
+        "request-stylebook.yml": (
+            "style_name", "source_url", "publisher", "audience", "use_case",
+            "difference", "licensing", "artifact",
+        ),
+        "report-stylebook-problem.yml": (
+            "problem_type", "skill", "location", "problem", "authority", "expected",
+        ),
+    }
+    forms_root = ROOT / ".github" / "ISSUE_TEMPLATE"
+    for filename, required_ids in expected.items():
+        path = forms_root / filename
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        for marker in ("name:", "description:", "body:"):
+            if marker not in text:
+                fail(errors, f"{path.relative_to(ROOT)}: missing {marker}")
+        ids = re.findall(r"^    id: ([a-z0-9_]+)$", text, re.MULTILINE)
+        if len(ids) != len(set(ids)):
+            fail(errors, f"{path.relative_to(ROOT)}: duplicate issue-form id")
+        missing = sorted(set(required_ids) - set(ids))
+        if missing:
+            fail(errors, f"{path.relative_to(ROOT)}: missing fields: {', '.join(missing)}")
 
 
 def main() -> int:
@@ -289,13 +381,14 @@ def main() -> int:
 
     validate_manifests(errors)
     validate_relative_links(errors)
+    validate_issue_forms(errors)
 
     license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
     if f"Copyright (c) 2026 {AUTHOR_NAME}" not in license_text:
         fail(errors, f"LICENSE: copyright holder must be {AUTHOR_NAME}")
 
     if (ROOT / "evals").exists():
-        fail(errors, "v0.1 must not contain an evals directory")
+        fail(errors, "v0.2 must not contain an evals directory")
 
     for path in ROOT.rglob("*"):
         if path.is_symlink():

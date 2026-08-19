@@ -1,0 +1,58 @@
+name: Report a Stylebook Problem
+description: Report interpretation, source, licensing, or compatibility concerns.
+title: "[Stylebook problem]: "
+body:
+  - type: dropdown
+    id: problem_type
+    attributes:
+      label: Problem type
+      options:
+        - Incorrect interpretation
+        - Outdated source
+        - Licensing concern
+        - Misleading instruction
+        - Compatibility issue
+        - Other editorial issue
+    validations:
+      required: true
+  - type: input
+    id: skill
+    attributes:
+      label: Stylebook name
+      placeholder: cdc-clear-communication
+    validations:
+      required: true
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: Link the file and quote only the minimum repository text needed to identify it.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: Explain the factual, editorial, licensing, or compatibility impact.
+    validations:
+      required: true
+  - type: input
+    id: authority
+    attributes:
+      label: Authoritative evidence
+      description: Link the current official source or licence when applicable.
+      placeholder: https://
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: Describe the safe correction without copying source-guide content.
+    validations:
+      required: true
+  - type: checkboxes
+    id: compatibility
+    attributes:
+      label: Existing behavior
+      options:
+        - label: I considered whether the correction could change backward-compatible behavior.
+          required: true

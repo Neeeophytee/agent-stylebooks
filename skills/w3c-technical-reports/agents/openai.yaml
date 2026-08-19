@@ -1,0 +1,4 @@
+interface:
+  display_name: "W3C Technical Reports"
+  short_description: "Precise specification-style requirements"
+  default_prompt: "Use $w3c-technical-reports to structure these approved requirements without inventing normative behavior."

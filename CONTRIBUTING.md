@@ -20,9 +20,10 @@ reuse license.
 2. Keep the directory and frontmatter `name` identical and in lowercase hyphen case.
 3. Put all trigger guidance in the frontmatter `description`.
 4. Add `agents/openai.yaml` with a matching explicit invocation.
-5. Add `references/provenance.md` with source URLs, license status, access date,
-   classification, and adaptation method.
-6. Update the root catalog, style matrix, provenance table, manifests, expected
+5. Add `references/SOURCE.md` with source URLs, publisher, licence evidence, access date,
+   classification, operationalized ideas, excluded source material, and non-affiliation.
+   Add a short `references/provenance.md` compatibility summary.
+6. Update `README.md`, `CATALOG.md`, the style matrix, provenance table, manifests, expected
    skill list in `scripts/validate_repo.py`, and examples if useful.
 7. Run `python3 scripts/validate_repo.py`.
 
@@ -48,3 +49,6 @@ structure a procedure, or what information an error must contain.
 
 Keep each `SKILL.md` below 500 lines. Place provenance in `references/` so normal
 skill use does not pay the context cost of licensing notes.
+
+Use the GitHub **Request a Stylebook** form to propose a source and the **Report a
+Stylebook Problem** form for interpretation, currency, licensing, or compatibility issues.

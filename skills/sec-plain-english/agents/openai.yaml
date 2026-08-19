@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEC Plain English"
+  short_description: "Material-fact-preserving investor prose"
+  default_prompt: "Use $sec-plain-english to clarify this disclosure without changing any material fact or qualification."

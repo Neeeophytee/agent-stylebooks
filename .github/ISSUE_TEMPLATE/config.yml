@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contribution policy
+    url: https://github.com/Neeeophytee/agent-stylebooks/blob/main/CONTRIBUTING.md
+    about: Read the source, differentiation, and licensing criteria before proposing a change.

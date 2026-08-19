@@ -1,7 +1,7 @@
 {
   "name": "agent-stylebooks",
-  "version": "0.1.0",
-  "description": "Eleven source-grounded house-style skills for documentation, service content, product help, and interface writing.",
+  "version": "0.2.0",
+  "description": "Sixteen source-grounded editorial systems for technical, service, health, product, standards, financial, and engineering writing.",
   "author": {
     "name": "Shilpa Mitra"
   },
@@ -17,15 +17,20 @@
   ],
   "skills": [
     "./skills/18f-content",
-    "./skills/apple-interface-writing",
+      "./skills/apple-interface-writing",
+      "./skills/cdc-clear-communication",
     "./skills/github-docs",
     "./skills/gitlab-docs",
     "./skills/google-developer-docs",
     "./skills/govuk",
     "./skills/kubernetes-docs",
     "./skills/mailchimp-content",
-    "./skills/mdn-web-docs",
-    "./skills/microsoft-writing-style",
-    "./skills/red-hat-docs"
+      "./skills/mdn-web-docs",
+      "./skills/microsoft-writing-style",
+      "./skills/nasa-technical-writing",
+      "./skills/nhs-health-content",
+      "./skills/red-hat-docs",
+      "./skills/sec-plain-english",
+      "./skills/w3c-technical-reports"
   ]
 }

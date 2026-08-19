@@ -1,0 +1,4 @@
+interface:
+  display_name: "NASA Technical Writing"
+  short_description: "Traceable scientific and engineering reports"
+  default_prompt: "Use $nasa-technical-writing to turn these verified results into a traceable, limitation-aware report."

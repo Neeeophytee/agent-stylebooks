@@ -1,0 +1,72 @@
+name: Request a Stylebook
+description: Propose an authoritative editorial system for the catalog.
+title: "[Stylebook request]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propose an editorial system with an authoritative source and a distinct writing use case.
+        Public availability is not a reuse licence.
+  - type: input
+    id: style_name
+    attributes:
+      label: Style or standard name
+      placeholder: Name used by the publisher or maintainer
+    validations:
+      required: true
+  - type: input
+    id: source_url
+    attributes:
+      label: Authoritative source URL
+      description: Link to the publisher's primary guide, not a third-party summary.
+      placeholder: https://
+    validations:
+      required: true
+  - type: input
+    id: publisher
+    attributes:
+      label: Publisher or maintainer
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Intended audience
+      description: Who reads the output, and what do they need to decide or do?
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Real-world use case
+      description: Describe a concrete writing task and its consequences.
+    validations:
+      required: true
+  - type: textarea
+    id: difference
+    attributes:
+      label: Difference from existing stylebooks
+      description: Name the editorial decisions that are not already covered.
+    validations:
+      required: true
+  - type: textarea
+    id: licensing
+    attributes:
+      label: Known licensing or reuse terms
+      description: Link exact licence evidence or say that the terms are unknown.
+    validations:
+      required: true
+  - type: textarea
+    id: artifact
+    attributes:
+      label: Example artifact it would improve
+      description: Describe the artifact without pasting copyrighted source-guide examples.
+    validations:
+      required: true
+  - type: checkboxes
+    id: source_acknowledgment
+    attributes:
+      label: Source check
+      options:
+        - label: I used an authoritative source and did not paste source-guide passages, tables, or examples.
+          required: true

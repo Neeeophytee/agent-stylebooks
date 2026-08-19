@@ -11,7 +11,7 @@ The portable installer currently requires Node.js 22.20 or newer.
 
 ```sh
 npx skills add Neeeophytee/agent-stylebooks --list
-npx skills add Neeeophytee/agent-stylebooks --skill govuk
+npx skills add Neeeophytee/agent-stylebooks --skill cdc-clear-communication
 npx skills add Neeeophytee/agent-stylebooks
 ```
 
@@ -70,7 +70,7 @@ For a manual installation, use `.claude/skills/<skill-name>/` in a project or
 
 Copy selected skill directories to `~/.hermes/skills/`, or add this repository’s
 `skills/` directory to `skills.external_dirs` in Hermes configuration. Point to
-`skills/`, not the repository root, so all 11 directories are direct children of
+`skills/`, not the repository root, so all 16 directories are direct children of
 the configured collection.
 
 ## Verify an install
